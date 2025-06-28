@@ -2,6 +2,11 @@
 const jwt = require("jsonwebtoken");
 const jwksClient = require("jwks-rsa");
 
+//👤 User logs in via Azure and receives an access token.
+//🧠 Your backend (auth.js) extracts the kid (key ID) from the JWT header.
+//📡 jwks-rsa fetches the corresponding public key from Azure’s JWKS endpoint.
+//🔍 jsonwebtoken uses that key to verify the token’s signature and decode the payload.
+
 // Initialize JWKS client to fetch signing keys from Microsoft
 const client = jwksClient({
   jwksUri: "https://login.microsoftonline.com/common/discovery/v2.0/keys",
